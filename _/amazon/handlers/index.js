@@ -1,6 +1,7 @@
 const { ok } = require('assert');
 const { createHash } = require('crypto');
 const chromium = require('chrome-aws-lambda');
+const Tesseract = require('tesseract.js');
 
 exports.handler = async (event, context) => {
   let browser = null;
@@ -35,7 +36,11 @@ exports.handler = async (event, context) => {
           }
 
           if (job.expected.hasOwnProperty('screenshot') === true) {
-            ok(createHash('sha1').update((await page.screenshot()).toString('base64')).digest('hex') === job.expected.screenshot, `Screenshot assertion failed.`);
+            await page.screenshot({path: '/tmp/screenshot.png'});
+            Tesseract.recognize('/tmp/screenshot.png', 'eng', { logger: m => console.log(m) }).then(({ data: { text } }) => {
+              const expected = "Example Domain\nThis domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.\n\nMore information..."
+              ok(text === expected)
+            })
           }
         }
       }

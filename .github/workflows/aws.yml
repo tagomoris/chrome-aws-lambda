@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build Lambda Layer
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 14.x
+        node-version: 18.x
 
     - name: Install Packages
       run: npm install
@@ -34,15 +34,15 @@ jobs:
   execute:
     name: Lambda (Node ${{ matrix.version }}.x)
     needs: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         event:
           - example.com
         version:
-          - 10
-          - 12
-          - 14
+          # https://docs.aws.amazon.com/lambda/latest/dg/lambda-nodejs.html
+          - 16
+          - 18
     steps:
     - name: Checkout
       uses: actions/checkout@v2
