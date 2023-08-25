@@ -41,6 +41,7 @@ jobs:
           - example.com
         version:
           # https://docs.aws.amazon.com/lambda/latest/dg/lambda-nodejs.html
+          - 16
           - 18
     steps:
     - name: Checkout
