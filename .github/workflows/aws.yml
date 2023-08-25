@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build Lambda Layer
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -34,15 +34,15 @@ jobs:
   execute:
     name: Lambda (Node ${{ matrix.version }}.x)
     needs: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         event:
           - example.com
         version:
-          - 10
-          - 12
-          - 14
+          - 16
+          - 18
+          - 20
     steps:
     - name: Checkout
       uses: actions/checkout@v2
