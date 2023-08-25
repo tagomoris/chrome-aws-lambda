@@ -36,8 +36,8 @@ exports.handler = async (event, context) => {
           }
 
           if (job.expected.hasOwnProperty('screenshot') === true) {
-            await page.screenshot({path: 'screenshot.png'});
-            Tesseract.recognize('screenshot.png', 'eng', { logger: m => console.log(m) }).then(({ data: { text } }) => {
+            await page.screenshot({path: '/tmp/screenshot.png'});
+            Tesseract.recognize('/tmp/screenshot.png', 'eng', { logger: m => console.log(m) }).then(({ data: { text } }) => {
               const expected = "Example Domain\nThis domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.\n\nMore information..."
               ok(text === expected)
             })
