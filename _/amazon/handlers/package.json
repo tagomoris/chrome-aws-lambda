@@ -1,0 +1,13 @@
+{
+  "name": "handler",
+  "version": "1.0.0",
+  "description": "Test handler for chrome-aws-lambda",
+  "main": "index.js",
+  "repository": "https://github.com/tagomoris/chrome-aws-lambda",
+  "author": "tagomoris",
+  "license": "MIT",
+  "dependencies": {
+    "tesseract.js": "^4.1.1"
+  },
+  "scripts": {}
+}
