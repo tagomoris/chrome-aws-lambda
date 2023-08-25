@@ -17,7 +17,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 14.x
+        node-version: 18.x
 
     - name: Install Packages
       run: npm install
@@ -40,9 +40,8 @@ jobs:
         event:
           - example.com
         version:
-          - 16
+          # https://docs.aws.amazon.com/lambda/latest/dg/lambda-nodejs.html
           - 18
-          - 20
     steps:
     - name: Checkout
       uses: actions/checkout@v2
