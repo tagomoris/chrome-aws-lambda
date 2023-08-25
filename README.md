@@ -363,3 +363,7 @@ This allows us to get the best compression ratio and faster decompression times.
 ## License
 
 MIT
+
+## Additional notes
+
+This section is to trigger CIs.
